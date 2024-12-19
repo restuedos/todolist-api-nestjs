@@ -16,16 +16,22 @@ export class AuthService {
 
   async register(dto: RegisterDto) {
     const existingUser = await this.userRepository.findOne({
-      where: { email: dto.email },
+      where: [{ email: dto.email }, { username: dto.username }],
     });
 
     if (existingUser) {
-      throw new UnauthorizedException('Email already exists');
+      if (existingUser.email === dto.email) {
+        throw new UnauthorizedException('Email already exists');
+      }
+      if (existingUser.username === dto.username) {
+        throw new UnauthorizedException('Username already exists');
+      }
     }
 
     const hashedPassword = await bcrypt.hash(dto.password, 10);
     const user = this.userRepository.create({
       email: dto.email,
+      username: dto.username,
       password: hashedPassword,
     });
 
@@ -37,7 +43,7 @@ export class AuthService {
 
   async login(dto: LoginDto) {
     const user = await this.userRepository.findOne({
-      where: { email: dto.email },
+      where: { username: dto.username },
     });
 
     if (!user) {
