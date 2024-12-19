@@ -15,7 +15,7 @@ export class Checklist {
   id: string;
 
   @Column()
-  title: string;
+  name: string;
 
   @CreateDateColumn()
   createdAt: Date;

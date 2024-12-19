@@ -5,5 +5,5 @@ export class CreateChecklistDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  title: string;
+  name: string;
 }
