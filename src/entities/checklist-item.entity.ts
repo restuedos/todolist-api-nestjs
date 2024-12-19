@@ -16,7 +16,7 @@ export class ChecklistItem {
   title: string;
 
   @Column({ default: false })
-  isCompleted: boolean;
+  status: boolean;
 
   @CreateDateColumn()
   createdAt: Date;

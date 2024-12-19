@@ -11,7 +11,6 @@ import { User } from '../entities/user.entity';
 import {
   CreateChecklistDto,
   CreateChecklistItemDto,
-  UpdateChecklistItemStatusDto,
   RenameChecklistItemDto,
 } from './dto';
 import { plainToClass } from 'class-transformer';
@@ -112,7 +111,6 @@ export class ChecklistService {
     user: User,
     checklistId: string,
     itemId: string,
-    dto: UpdateChecklistItemStatusDto,
   ) {
     await this.verifyChecklistOwnership(user.id, checklistId);
     const item = await this.checklistItemRepository.findOne({
@@ -123,7 +121,7 @@ export class ChecklistService {
       throw new NotFoundException('Checklist item not found');
     }
 
-    item.isCompleted = dto.isCompleted;
+    item.status = !item.status;
     return this.checklistItemRepository.save(item);
   }
 

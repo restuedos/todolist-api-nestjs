@@ -15,7 +15,6 @@ import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 import {
   CreateChecklistDto,
   CreateChecklistItemDto,
-  UpdateChecklistItemStatusDto,
   RenameChecklistItemDto,
 } from './dto';
 
@@ -90,13 +89,11 @@ export class ChecklistController {
     @Request() req,
     @Param('checklistId') checklistId: string,
     @Param('checklistItemId') checklistItemId: string,
-    @Body() dto: UpdateChecklistItemStatusDto,
   ) {
     return this.checklistService.updateChecklistItemStatus(
       req.user,
       checklistId,
       checklistItemId,
-      dto,
     );
   }
 
