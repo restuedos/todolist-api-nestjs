@@ -13,7 +13,7 @@ export class ChecklistItem {
   id: string;
 
   @Column()
-  title: string;
+  itemName: string;
 
   @Column({ default: false })
   status: boolean;

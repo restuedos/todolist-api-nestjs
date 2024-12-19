@@ -140,7 +140,7 @@ export class ChecklistService {
       throw new NotFoundException('Checklist item not found');
     }
 
-    item.title = dto.title;
+    item.itemName = dto.itemName;
     return this.checklistItemRepository.save(item);
   }
 

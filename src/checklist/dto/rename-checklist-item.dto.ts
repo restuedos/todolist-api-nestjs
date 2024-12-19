@@ -5,5 +5,5 @@ export class RenameChecklistItemDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  title: string;
+  itemName: string;
 }
